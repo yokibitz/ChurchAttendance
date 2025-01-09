@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Converters.fs" />
+    <Compile Include="Views.fs" />
+    <Compile Include="Handlers.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChurchAttendance.Core\ChurchAttendance.Core.fsproj" />
+    <ProjectReference Include="..\ChurchAttendance.Data\ChurchAttendance.Data.fsproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Oxpecker" Version="1.1.2" />
+    <PackageReference Include="Oxpecker.Htmx" Version="1.0.0" />
+  </ItemGroup>
+</Project>

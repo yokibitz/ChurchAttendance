@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Attendance Report</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script>
+        function openTab(evt, groupName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" bg-blue-500 text-white", "");
+            }
+            document.getElementById(groupName).style.display = "block";
+            evt.currentTarget.className += " bg-blue-500 text-white";
+        }
+    </script>
+</head>
+
+<body class="bg-gray-100 p-4">
+    <div class="container mx-auto">
+        <h1 class="text-2xl font-bold mb-4">Monthly Attendance Report - December 2024</h1>
+        <div class="mb-4">
+            <button class="tablinks px-4 py-2 mr-2 bg-blue-500 text-white"
+                onclick="openTab(event, 'Women')">Women</button>
+            <button class="tablinks px-4 py-2 mr-2" onclick="openTab(event, 'Men')">Men</button>
+            <button class="tablinks px-4 py-2 mr-2" onclick="openTab(event, 'Children')">Children</button>
+            <button class="tablinks px-4 py-2 mr-2" onclick="openTab(event, 'YAN')">YAN</button>
+        </div>
+        <div id="Women" class="tabcontent">
+            <h2 class="text-xl font-semibold mb-2">Women</h2>
+            <table class="min-w-full bg-white">
+                <thead>
+                    <tr>
+                        <th class="py-2 px-4 border-b">Date</th>
+                        <th class="py-2 px-4 border-b">Attendee ID</th>
+                        <th class="py-2 px-4 border-b">Present</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Women Events -->
+                    <tr>
+                        <td class="py-2 px-4 border-b">2024-12-06</td>
+                        <td class="py-2 px-4 border-b">0436e61b-e499-41bd-a5ef-efa9a9d0149d</td>
+                        <td class="py-2 px-4 border-b"><input type="checkbox" disabled></td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+        <div id="Men" class="tabcontent" style="display:none">
+            <h2 class="text-xl font-semibold mb-2">Men</h2>
+            <table class="min-w-full bg-white">
+                <thead>
+                    <tr>
+                        <th class="py-2 px-4 border-b">Date</th>
+                        <th class="py-2 px-4 border-b">Attendee ID</th>
+                        <th class="py-2 px-4 border-b">Present</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Men Events -->
+                    <tr>
+                        <td class="py-2 px-4 border-b">2024-12-06</td>
+                        <td class="py-2 px-4 border-b">bb732460-3e56-473f-90d1-4d8a9f4e33b8</td>
+                        <td class="py-2 px-4 border-b"><input type="checkbox" disabled></td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+        <div id="Children" class="tabcontent" style="display:none">
+            <h2 class="text-xl font-semibold mb-2">Children</h2>
+            <table class="min-w-full bg-white">
+                <thead>
+                    <tr>
+                        <th class="py-2 px-4 border-b">Date</th>
+                        <th class="py-2 px-4 border-b">Attendee ID</th>
+                        <th class="py-2 px-4 border-b">Present</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Children Events -->
+                    <tr>
+                        <td class="py-2 px-4 border-b">2024-12-06</td>
+                        <td class="py-2 px-4 border-b">d290f1ee-6c54-4b01-90e6-d701748f0851</td>
+                        <td class="py-2 px-4 border-b"><input type="checkbox" disabled></td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+        <div id="YAN" class="tabcontent" style="display:none">
+            <h2 class="text-xl font-semibold mb-2">YAN</h2>
+            <table class="min-w-full bg-white">
+                <thead>
+                    <tr>
+                        <th class="py-2 px-4 border-b">Date</th>
+                        <th class="py-2 px-4 border-b">Attendee ID</th>
+                        <th class="py-2 px-4 border-b">Present</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- YAN Events -->
+                    <tr>
+                        <td class="py-2 px-4 border-b">2024-12-06</td>
+                        <td class="py-2 px-4 border-b">ecf8343e-9484-4443-b53a-765306e54cd7</td>
+                        <td class="py-2 px-4 border-b"><input type="checkbox" disabled></td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
