@@ -12,6 +12,7 @@ module Handlers =
     open Views
     open System.IO
     open Microsoft.Extensions.Logging
+    open Oxpecker.ViewEngine
 
     let getAllAttendees (ctx: HttpContext) =
         task {
@@ -71,13 +72,18 @@ module Handlers =
 
             match result with
             | Some sheet -> 
-                let view = attendanceSheetView ctx sheet
+                let view = 
+                    attendanceSheetView ctx sheet
+                    |> mainView ctx
+
                 return! ctx.WriteHtmlView view
             | None -> 
                 ctx.Response.StatusCode <- StatusCodes.Status404NotFound
                 return! ctx.Response.WriteAsync("Attendance sheet not found")
         }
         :> Task
+
+    
 
     let createMonthlyAttendanceReport month year (ctx: HttpContext) =
         task {

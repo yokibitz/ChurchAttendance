@@ -8,6 +8,7 @@ open ChurchAttendance.Web.Handlers
 open ChurchAttendance.Core.Repository
 open ChurchAttendance.Data
 open System.IO
+open System.Text.Json.Serialization
 
 
 let endpoints = [
@@ -51,6 +52,7 @@ let configureServices (services: IServiceCollection) =
         
     let jsonSerializerOptions = JsonSerializerOptions(JsonSerializerDefaults.Web)
     jsonSerializerOptions.Converters.Add(new GroupConverter())
+    JsonFSharpOptions.Default().AddToJsonSerializerOptions(jsonSerializerOptions)
     
     services.AddSingleton<IJsonSerializer>(SystemTextJsonSerializer(jsonSerializerOptions)) |> ignore
     
