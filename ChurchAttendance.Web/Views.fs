@@ -36,8 +36,8 @@ module Views =
                                 let id = DateTime.UtcNow.Ticks.ToString()
                                 raw $"""<form hx-patch="/api/attendance/sheet/{sheetId}" 
                                 hx-ext='json-enc'
-                                hx-swap="none"                               
-                                hx-target="this"                         
+                                hx-swap="innerHtml"                               
+                                hx-target="#p{event.Date.ToString("yyyyMMdd")}"
                                 hx-vals='js:{vals event attendee id}'
                                 hx-trigger="change from:find .present-checkbox delay:1s">
                                 <input id="{id}" type="checkbox" class="present-checkbox"
@@ -99,7 +99,14 @@ module Views =
                             th(class'="py-2 px-4 border-b floating-total") { "Attendee ID" }
                             th(class'="py-2 px-4 border-b floating-total") { "Name" }
                             for event in sheet.Events do
-                                th(class'="py-2 px-4 border-b floating-total") { event.Date.ToString("yyyy-MM-dd") }
+                                th(class'="py-2 px-4 border-b floating-total") { 
+                                    div() {                                        
+                                        event.Date.ToString("yyyy-MM-dd") 
+                                        div(){
+                                            label(id="p"+event.Date.ToString("yyyyMMdd")) { $"Count: {event.Records |> List.filter (fun r -> r.Present) |> List.length}" }
+                                        }                                        
+                                    }                                    
+                                }
                         }
                     }
                     tbody(class'="divide-y divide-gray-300") { generateRows ctx (string sheet.Id) sheet.Events }//.data("signals", JsonSerializer.Serialize(sheet, jsonSerializerOptions)) 

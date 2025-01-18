@@ -128,7 +128,12 @@ module Handlers =
             let! attendanceRecord = ctx.BindJson<NewAttendanceRecord>()
             let result = AttendanceManager.addAttendanceRecordToRepository repository sheetId attendanceRecord
             match result with
-            | Ok _ -> ()
+            | Ok sheet -> 
+                let countOfPresent = sheet.Events
+                                    |> List.find (fun e -> e.Date = attendanceRecord.Date)
+                                    |> fun event -> event.Records |> List.filter (fun r -> r.Present = true)
+                                    |> List.length
+                return! ctx.WriteText <| $"Count: {string countOfPresent}"
             | Error _ -> ()
 
             // return! ctx.WriteJson result

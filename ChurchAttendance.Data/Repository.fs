@@ -88,11 +88,11 @@ type Repository(databasePath: string) =
                 logger.LogError(ex, "Failed to save attendance")
                 Error ex.Message
 
-        member _.saveMonthlyAttendanceSheet (monthlyAttendanceSheet: MonthlyAttendanceSheet): Result<unit,string> = 
+        member _.saveMonthlyAttendanceSheet (monthlyAttendanceSheet: MonthlyAttendanceSheet) = 
             try
                 logger.LogInformation("Saving attendance sheet")
                 db.GetCollection<MonthlyAttendanceSheet>("attendanceSheets").Upsert(monthlyAttendanceSheet) |> ignore
-                Ok ()
+                Ok monthlyAttendanceSheet
             with ex ->
                 logger.LogError(ex, "Failed to save attendance sheet")
                 Error ex.Message
