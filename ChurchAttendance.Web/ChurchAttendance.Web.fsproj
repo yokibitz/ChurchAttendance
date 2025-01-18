@@ -4,7 +4,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Converters.fs" />
+    <Compile Include="DataStarViews.fs" />
     <Compile Include="Views.fs" />
+    <Compile Include="DataStarHandlers.fs" />
     <Compile Include="Handlers.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

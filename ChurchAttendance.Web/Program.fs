@@ -14,6 +14,7 @@ open System.Text.Json.Serialization
 let endpoints = [
     GET [
         route "/" <| redirectTo "/attendees" true
+        route "/test" test
     ]
     subRoute "/attendees" [
         GET [ route "" getAllAttendees ]

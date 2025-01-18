@@ -8,8 +8,8 @@ open ChurchAttendance.Core
 open ChurchAttendance.Core.Models
 open ChurchAttendance.Core.Repository
 
-module Handlers =
-    open Views
+module DsHandlers =
+    open DsViews
     open System.IO
     open Microsoft.Extensions.Logging
     open Oxpecker.ViewEngine

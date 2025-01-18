@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Children Group Events</title>
+    <script src="https://cdn.jsdelivr.net/npm/datastar"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Children Group Events</h1>
+    <div id="app"></div>
+
+    <script>
+        // Define the JSON data as a signal
+        const dataSignal = $ds.signal({
+            id: "a788865c-44ad-4bb2-acec-e535373ddba0",
+            group: "Children",
+            month: 12,
+            year: 2024,
+            events: [
+                {
+                    date: "2024-12-06T00:00:00",
+                    records: [
+                        {
+                            attendeeId: "075d11d2-443d-4f61-b801-a2b500d922d2",
+                            firstName: "ddfdf",
+                            lastName: "sdfsdfsdf",
+                            present: false
+                        },
+                        {
+                            attendeeId: "07f2fedf-ac44-4ed5-8dcb-1f82c575bc0e",
+                            firstName: "ddfdf",
+                            lastName: "sdfsdfsdf",
+                            present: false
+                        }
+                    ]
+                },
+                {
+                    date: "2024-12-13T00:00:00",
+                    records: [
+                        {
+                            attendeeId: "075d11d2-443d-4f61-b801-a2b500d922d2",
+                            firstName: "ddfdf",
+                            lastName: "sdfsdfsdf",
+                            present: false
+                        },
+                        {
+                            attendeeId: "07f2fedf-ac44-4ed5-8dcb-1f82c575bc0e",
+                            firstName: "ddfdf",
+                            lastName: "sdfsdfsdf",
+                            present: false
+                        }
+                    ]
+                }
+            ]
+        });
+
+        // Create the application
+        const app = $ds.mount('#app', dataSignal, (data) => `
+            <div>
+                <h2>Group: ${data.group}</h2>
+                <p>Month: ${data.month}, Year: ${data.year}</p>
+                ${data.events.map(event => `
+                    <h3>Event Date: ${new Date(event.date).toLocaleDateString()}</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Attendee ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Present</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${event.records.map(record => `
+                                <tr>
+                                    <td>${record.attendeeId}</td>
+                                    <td>${record.firstName}</td>
+                                    <td>${record.lastName}</td>
+                                    <td>${record.present ? "Yes" : "No"}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `).join('')}
+            </div>
+        `);
+    </script>
+</body>
+
+</html>

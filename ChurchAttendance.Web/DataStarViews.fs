@@ -9,48 +9,7 @@ open Microsoft.AspNetCore.Http
 open System.Text.Json
 open System.Text.Json.Serialization
 
-module Views = 
-    let headers = 
-        let value = (sprintf """{"Content-Type": "%s"}""" "application/json")        
-        value
-
-    let vals event attendee id = 
-        (sprintf """{"date": "%s", "attendeeId": "%s", "present": document.getElementById("%s").checked}""" (event.Date.ToString("yyyy-MM-dd")) (attendee.AttendeeId.ToString()) id)        
-        
-    
-    let private generateRows (ctx:HttpContext) sheetId (events:EnrichedEventAttendance list) = 
-        let enrichedAttendees = 
-            events 
-            |> List.collect (fun event -> event.Records)
-            |> List.distinctBy (fun r -> r.AttendeeId)
-
-        Fragment() {
-            yield! enrichedAttendees |> List.map (fun attendee ->
-                tr(class'="odd:bg-gray-100 even:bg-white") { 
-                    td(class'="py-2 px-4 border-b") { string attendee.AttendeeId }
-                    td(class'="py-2 px-4 border-b") { string $"{attendee.LastName} {attendee.FirstName}" }
-                    yield! (events |> List.map (fun event ->
-                        let record = event.Records |> List.tryFind (fun r -> r.AttendeeId = attendee.AttendeeId)
-                        match record with
-                        | Some r -> td(class'="py-2 px-4 border-b") {
-                                let id = DateTime.UtcNow.Ticks.ToString()
-                                raw $"""<form hx-patch="/api/attendance/sheet/{sheetId}" 
-                                hx-ext='json-enc'
-                                hx-swap="innerHtml"                               
-                                hx-target="#p{event.Date.ToString("yyyyMMdd")}"
-                                hx-vals='js:{vals event attendee id}'
-                                hx-trigger="change from:find .present-checkbox delay:1s">
-                                <input id="{id}" type="checkbox" class="present-checkbox"
-                                 {(if r.Present then "checked" else "")}/>
-                                </form>
-                                """
-                            }
-                        | None -> td(class'="py-2 px-4 border-b") {})
-                    )
-                }
-            )
-        }
-
+module DsViews = 
     let dataOptions = sprintf """{'%s': '%s'}""" "contentType" "json"    
 
     let dataSignals event (r:EnrichedAttendanceRecord) id= 
@@ -109,7 +68,7 @@ module Views =
                                 }
                         }
                     }
-                    tbody(class'="divide-y divide-gray-300") { generateRows ctx (string sheet.Id) sheet.Events }//.data("signals", JsonSerializer.Serialize(sheet, jsonSerializerOptions)) 
+                    tbody(class'="divide-y divide-gray-300") { generateDataStarRows ctx (string sheet.Id) sheet.Events }//.data("signals", JsonSerializer.Serialize(sheet, jsonSerializerOptions)) 
                 }
                 //raw """<div data-text="ctx.signals.JSON()"></div>"""
             }

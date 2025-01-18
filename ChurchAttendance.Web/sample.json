@@ -1,0 +1,42 @@
+{
+    "id": "a788865c-44ad-4bb2-acec-e535373ddba0",
+    "group": "Children",
+    "month": 12,
+    "year": 2024,
+    "events": [
+        {
+            "date": "2024-12-06T00:00:00",
+            "records": [
+                {
+                    "attendeeId": "075d11d2-443d-4f61-b801-a2b500d922d2",
+                    "firstName": "ddfdf",
+                    "lastName": "sdfsdfsdf",
+                    "present": false
+                },
+                {
+                    "attendeeId": "07f2fedf-ac44-4ed5-8dcb-1f82c575bc0e",
+                    "firstName": "ddfdf",
+                    "lastName": "sdfsdfsdf",
+                    "present": false
+                }
+            ]
+        },
+        {
+            "date": "2024-12-13T00:00:00",
+            "records": [
+                {
+                    "attendeeId": "075d11d2-443d-4f61-b801-a2b500d922d2",
+                    "firstName": "ddfdf",
+                    "lastName": "sdfsdfsdf",
+                    "present": false
+                },
+                {
+                    "attendeeId": "07f2fedf-ac44-4ed5-8dcb-1f82c575bc0e",
+                    "firstName": "ddfdf",
+                    "lastName": "sdfsdfsdf",
+                    "present": false
+                }
+            ]
+        }
+    ]
+}
